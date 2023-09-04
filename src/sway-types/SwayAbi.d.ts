@@ -10,6 +10,8 @@
 */
 
 import type {
+  BigNumberish,
+  BN,
   BytesLike,
   Contract,
   DecodedValue,
@@ -20,17 +22,21 @@ import type {
 
 interface SwayAbiInterface extends Interface {
   functions: {
-    test_function: FunctionFragment;
+    get_count: FunctionFragment;
+    increment_count: FunctionFragment;
   };
 
-  encodeFunctionData(functionFragment: 'test_function', values: []): Uint8Array;
+  encodeFunctionData(functionFragment: 'get_count', values: []): Uint8Array;
+  encodeFunctionData(functionFragment: 'increment_count', values: [BigNumberish]): Uint8Array;
 
-  decodeFunctionData(functionFragment: 'test_function', data: BytesLike): DecodedValue;
+  decodeFunctionData(functionFragment: 'get_count', data: BytesLike): DecodedValue;
+  decodeFunctionData(functionFragment: 'increment_count', data: BytesLike): DecodedValue;
 }
 
 export class SwayAbi extends Contract {
   interface: SwayAbiInterface;
   functions: {
-    test_function: InvokeFunction<[], boolean>;
+    get_count: InvokeFunction<[], BN>;
+    increment_count: InvokeFunction<[amount: BigNumberish], BN>;
   };
 }

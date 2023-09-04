@@ -17,7 +17,7 @@ const _abi = {
   "types": [
     {
       "typeId": 0,
-      "type": "bool",
+      "type": "u64",
       "components": null,
       "typeParameters": null
     }
@@ -25,13 +25,44 @@ const _abi = {
   "functions": [
     {
       "inputs": [],
-      "name": "test_function",
+      "name": "get_count",
       "output": {
         "name": "",
         "type": 0,
         "typeArguments": null
       },
-      "attributes": null
+      "attributes": [
+        {
+          "name": "storage",
+          "arguments": [
+            "read"
+          ]
+        }
+      ]
+    },
+    {
+      "inputs": [
+        {
+          "name": "amount",
+          "type": 0,
+          "typeArguments": null
+        }
+      ],
+      "name": "increment_count",
+      "output": {
+        "name": "",
+        "type": 0,
+        "typeArguments": null
+      },
+      "attributes": [
+        {
+          "name": "storage",
+          "arguments": [
+            "write",
+            "read"
+          ]
+        }
+      ]
     }
   ],
   "loggedTypes": [],
