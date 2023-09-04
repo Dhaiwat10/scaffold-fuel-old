@@ -1,7 +1,7 @@
 import { deployContract } from '@/deployContract';
 import abi from '@/sway/out/debug/sway-abi.json';
 import { getFunctionsFromAbi } from '@/utils';
-import { Address, Contract, JsonAbi, Provider, Wallet } from 'fuels';
+import { Address, BN, Contract, JsonAbi, Provider, Wallet } from 'fuels';
 import { useEffect, useState } from 'react';
 
 const onFunctionSendClick = async ({
@@ -19,7 +19,7 @@ const onFunctionSendClick = async ({
     contract,
   });
   const tx = await contract.functions[func.name](inputValues).call();
-  console.log(tx);
+  console.log((tx.value as BN).toNumber());
 };
 
 const FunctionCard = ({
@@ -98,7 +98,7 @@ export default function Home() {
   const [contract, setContract] = useState<Contract>();
 
   const contractId = new Address(
-    'fuel1zjqxrlxyamd3k0zmnrex848dl57h595wytetmv9ryhex3fp3tlqsuzzzl2'
+    'fuel1lf5ljwjwsyc4taxkvcjvzuqdxcqa647cjc8gs7pux908g920njuqz06u3f'
   ).toB256();
 
   useEffect(() => {
